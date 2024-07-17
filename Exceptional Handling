@@ -36,7 +36,6 @@ public class FileRead {
     } catch (NullPointerException e) {
       System.out.println("Error: Reader object is null!");
     } finally {
-      // This block executes always, regardless of exceptions
       System.out.println("File reading process finished.");
     }
 
