@@ -1,0 +1,84 @@
+Programs on Method Overloading
+1.
+class HelperService {
+
+    private String formatNumber(int value) {
+        return String.format("%d", value);
+    }
+
+    private String formatNumber(double value) {
+        return String.format("%.3f", value);
+    }
+
+    private String formatNumber(String value) {
+        return String.format("%.2f", Double.parseDouble(value));
+    }
+
+    public static void main(String[] args) {
+        HelperService hs = new HelperService();
+        System.out.println(hs.formatNumber(500));
+        System.out.println(hs.formatNumber(89.9934));
+        System.out.println(hs.formatNumber("550"));
+    }
+}
+
+2.
+class Calculator {
+  void calculateArea(int radius) {
+    System.out.println("Area of circle: " + Math.PI * radius * radius);
+  }
+
+  void calculateArea(double length, double breadth) {
+    System.out.println("Area of rectangle: "  + length * breadth);
+  }
+}
+
+class AreaTest {
+  public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    calc.calculateArea(5); // Calls int argument method (implicit promotion to double)
+    calc.calculateArea(10.5, 8.2); // Calls double arguments method
+  }
+}
+
+3.
+class NumberUtil {
+  void printNumber(int num) {
+    System.out.println("Integer: " + num);
+  }
+
+  void printNumber(Integer num) {
+    System.out.println("Integer object: " + num);
+  }
+}
+
+public class WrapperTest {
+  public static void main(String[] args) {
+    NumberUtil util = new NumberUtil();
+    util.printNumber(10);
+    util.printNumber(new Integer(20));
+  }
+}
+
+4.
+public class Sum {  
+    public int sum(int x, int y) { return (x + y); } 
+  
+    public int sum(int x, int y, int z) 
+    { 
+        return (x + y + z); 
+    } 
+
+    public double sum(double x, double y) 
+    { 
+        return (x + y); 
+    } 
+   
+    public static void main(String args[]) 
+    { 
+        Sum s = new Sum(); 
+        System.out.println(s.sum(10, 20)); 
+        System.out.println(s.sum(10, 20, 30)); 
+        System.out.println(s.sum(10.5, 20.5)); 
+    } 
+}
