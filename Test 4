@@ -1,0 +1,46 @@
+Exceptional Handling
+1. Basic Exception Handling
+public class ExceptionDemo {
+
+  public static void main(String[] args) {
+    int a = 10;
+    int b = 0;
+
+    try {
+      int result = a / b;
+      System.out.println("Result: " + result);
+    } catch (ArithmeticException e) {
+      System.out.println("Error: Division by zero!");
+    }
+  }
+}
+
+2. Handling Multiple Exceptions
+public class FileRead {
+
+  public static void main(String[] args) throws IOException {
+    String filename = "data.txt";
+    String content = null;
+
+    try {
+      FileReader reader = new FileReader(filename);
+      StringBuilder sb = new StringBuilder();
+      int i;
+      while ((i = reader.read()) != -1) {
+        sb.append((char) i);
+      }
+      content = sb.toString();
+      reader.close();
+    } catch (IOException e) {
+      System.out.println("Error: Couldn't read file " + filename);
+    } catch (NullPointerException e) {
+      System.out.println("Error: Reader object is null!");
+    } finally {
+      System.out.println("File reading process finished.");
+    }
+
+    if (content != null) {
+      System.out.println("File content: " + content);
+    }
+  }
+}
