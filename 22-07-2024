@@ -1,0 +1,179 @@
+1. Java Program to Convert a Given Number of Days in Terms of Years, Weeks & Days
+import java.util.Scanner;
+
+public class DaysConverter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of days: ");
+        int days = scanner.nextInt();
+
+        int years = days / 365;
+        days %= 365; // Update days to remaining after calculating years
+
+        int weeks = days / 7;
+        days %= 7; // Update days to remaining after calculating weeks
+
+        System.out.println(days + " days is equal to " + years + " years, " + weeks + " weeks, and " + days + " days.");
+    }
+}
+
+2. Write a program to find the number of student users in the college, get the total users, staff users details from the client. Note for every 3 staff user there is one Non teaching staff user assigned by default
+import java.util.Scanner;
+
+public class CollegeUsers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the total number of users: ");
+        int totalUsers = scanner.nextInt();
+
+        System.out.print("Enter the number of staff users: ");
+        int staffUsers = scanner.nextInt();
+
+        int nonTeachingStaffUsers = staffUsers / 3;
+
+        int studentUsers = totalUsers - staffUsers - nonTeachingStaffUsers;
+
+        System.out.println("Number of student users: " + studentUsers);
+        System.out.println("Number of staff users: " + staffUsers);
+        System.out.println("Number of non-teaching staff users: " + nonTeachingStaffUsers);
+
+        scanner.close();
+    }
+}
+
+3. Write a program to print number of factors and to print nth factor of the given number
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class FactorCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        ArrayList<Integer> factors = new ArrayList<>();
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                factors.add(i);
+            }
+        }
+
+        System.out.println("Number of factors: " + factors.size());
+
+        System.out.print("Enter the position of the factor to print (n): ");
+        int n = scanner.nextInt();
+
+        if (n > 0 && n <= factors.size()) {
+            System.out.println("The " + n + "th factor is: " + factors.get(n - 1));
+        } else {
+            System.out.println("Invalid position! There are only " + factors.size() + " factors.");
+        }
+
+        scanner.close();
+    }
+}
+
+4.	Write a program to print n prime numbers after nth Prime number
+import java.util.Scanner;
+
+public class PrimeNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the value of n to find the nth prime number: ");
+        int nthPrimeIndex = scanner.nextInt();
+        
+        System.out.print("Enter the number of primes to print after the nth prime number: ");
+        int numberOfPrimesToPrint = scanner.nextInt();
+
+        int nthPrime = findNthPrime(nthPrimeIndex);
+
+        System.out.println("The " + nthPrimeIndex + "th prime number is: " + nthPrime);
+
+        System.out.println("The next " + numberOfPrimesToPrint + " prime numbers after " + nthPrime + " are:");
+        printNextNPrimes(nthPrime, numberOfPrimesToPrint);
+
+        scanner.close();
+    }
+
+    public static int findNthPrime(int n) {
+        int count = 0;
+        int number = 1;
+        while (count < n) {
+            number++;
+            if (isPrime(number)) {
+                count++;
+            }
+        }
+        return number;
+    }
+
+    public static void printNextNPrimes(int start, int n) {
+        int count = 0;
+        int number = start;
+        while (count < n) {
+            number++;
+            if (isPrime(number)) {
+                System.out.print(number + " ");
+                count++;
+            }
+        }
+        System.out.println();
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+5. Write a Program to create a list of all numbers in a range which are perfect squares and the sum of the digits of the number is less than 10
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class PerfectSquares {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the start of the range: ");
+        int start = scanner.nextInt();
+
+        System.out.print("Enter the end of the range: ");
+        int end = scanner.nextInt();
+
+        ArrayList<Integer> perfectSquares = new ArrayList<>();
+        for (int i = (int) Math.ceil(Math.sqrt(start)); i <= Math.floor(Math.sqrt(end)); i++) {
+            int square = i * i;
+            if (square >= start && square <= end && sumOfDigits(square) < 10) {
+                perfectSquares.add(square);
+            }
+        }
+
+        System.out.println("Perfect squares in the range [" + start + ", " + end + "] with digit sum less than 10:");
+        for (int number : perfectSquares) {
+            System.out.println(number);
+        }
+
+        scanner.close();
+    }
+
+    public static int sumOfDigits(int number) {
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
+    }
+}
