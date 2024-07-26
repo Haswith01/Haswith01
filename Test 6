@@ -1,0 +1,106 @@
+1. Override a default constructor, which contains a=10,b=15 in java using parametrized constructor which contains a=20,b=25. Create a method called disp(). And call both the constructors associating it with disp()
+public class ConstructorExample {
+    int a, b;
+
+    ConstructorExample() {
+        a = 10;
+        b = 15;
+    }
+
+    ConstructorExample(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    void disp() {
+        System.out.println("a = " + a + ", b = " + b);
+    }
+
+    public static void main(String[] args) {
+        ConstructorExample obj1 = new ConstructorExample();
+        obj1.disp();
+
+        ConstructorExample obj2 = new ConstructorExample(20, 25);
+        obj2.disp();
+    }
+}
+
+2. Write java code for creating 3 methods called even, odd and prime in parent class and override them from child class. The parent class should print 1 to 20 range in all method, but child print 1 to 30 array range in all methods. And access all the methods using derived class object
+class Parent {
+    void even() {
+        System.out.println("Even numbers from 1 to 20:");
+        for (int i = 2; i <= 20; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    void odd() {
+        System.out.println("Odd numbers from 1 to 20:");
+        for (int i = 1; i <= 20; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    void prime() {
+        System.out.println("Prime numbers from 1 to 20:");
+        for (int i = 2; i <= 20; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+class Child extends Parent {
+    void even() {
+        System.out.println("Even numbers from 1 to 30:");
+        for (int i = 2; i <= 30; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    void odd() {
+        System.out.println("Odd numbers from 1 to 30:");
+        for (int i = 1; i <= 30; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    void prime() {
+        System.out.println("Prime numbers from 1 to 30:");
+        for (int i = 2; i <= 30; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.even();
+        obj.odd();
+        obj.prime();
+    }
+}
